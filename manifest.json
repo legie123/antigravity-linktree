@@ -1,0 +1,22 @@
+{
+  "name": "Antigravity Central",
+  "short_name": "AG Central",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#070005",
+  "theme_color": "#3b82f6",
+  "description": "Ecosistemul Live de Infrastructură Antigravity",
+  "icons": [
+    {
+      "src": "antigravity-logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "antigravity-logo.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
