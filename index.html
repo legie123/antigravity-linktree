@@ -435,6 +435,11 @@
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
         }
 
+        @keyframes mysticBreathe {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+            100% { transform: translate(-50%, -50%) scale(1.15); opacity: 0.7; }
+        }
+
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
@@ -577,10 +582,11 @@
     <img src="https://www.svgrepo.com/show/440537/dragon.svg" class="dragon d2" alt="">
 
     <div class="container">
-        <header>
-            <img src="antigravity-logo.png" alt="Antigravity Logo" class="logo">
-            <h1>Antigravity Central</h1>
-            <p>Ecosistemul Aplicațiilor Online</p>
+        <header style="margin-bottom: 2.5rem; position: relative;">
+            <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 140px; height: 140px; background: radial-gradient(circle, rgba(155, 48, 255, 0.4) 0%, transparent 70%); z-index: -1; filter: blur(20px); animation: mysticBreathe 3s infinite alternate;"></div>
+            <img src="dragon-linktree.jpg" alt="Antigravity Logo" class="logo" style="border: 2px solid rgba(255, 255, 255, 0.3); box-shadow: 0 0 30px rgba(138, 43, 226, 0.4);">
+            <h1 style="background: linear-gradient(135deg, #fff 0%, #a855f7 50%, #ea580c 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Antigravity Central</h1>
+            <p style="color: rgba(255, 255, 255, 0.6); letter-spacing: 2px; font-weight: 500;">ECOSISTEMUL APLICAȚIILOR ONLINE</p>
             
             <!-- Install Button (Always visible) -->
             <button id="installAppBtn" class="install-btn" style="display: inline-flex;">
@@ -593,7 +599,7 @@
         <ul>
             <!-- DS Core -->
             <li style="animation-delay: 0.25s;">
-                <a href="https://dragons-delivery-657910053930.europe-west1.run.app" class="link-card ds-project" target="_blank">
+                <a href="https://dragons-delivery-3rzn6ry36q-ew.a.run.app" class="link-card ds-project" target="_blank">
                     <div class="link-title"><span class="status-dot"></span> 🐉 Dragons Delivery</div>
                     <div class="link-desc">Portal operațional tactic și site de onboarding pentru curieri.</div>
                 </a>
@@ -607,11 +613,18 @@
                 <button class="info-btn" data-id="dsportal">ℹ</button>
             </li>
             <li style="animation-delay: 0.35s;">
-                <a href="https://ds-app-v2-3rzn6ry36q-ew.a.run.app" class="link-card ds-project" target="_blank">
-                    <div class="link-title"><span class="status-dot"></span> 📱 DS App V2</div>
-                    <div class="link-desc">Aplicația de monitorizare și comunicare pentru flotă.</div>
+                <a href="https://ds-app-v2-3rzn6ry36q-ew.a.run.app" class="link-card ds-project" style="border: 1px solid rgba(168, 85, 247, 0.4); background: rgba(168, 85, 247, 0.05);" target="_blank">
+                    <div class="link-title"><span class="status-dot"></span> ☁️ Antigravity Cloud</div>
+                    <div class="link-desc">Portalul central de monitorizare și administrare a ecosistemului Antigravity.</div>
                 </a>
                 <button class="info-btn" data-id="dsapp">ℹ</button>
+            </li>
+            <li style="animation-delay: 0.38s;">
+                <a href="https://la-fratii-bikes-657910053930.europe-west1.run.app" class="link-card ds-project" target="_blank">
+                    <div class="link-title"><span class="status-dot"></span> 🚲 La Frații Bikes</div>
+                    <div class="link-desc">Sistemul intern de management pentru flotă și închirieri biciclete E-Bike.</div>
+                </a>
+                <button class="info-btn" data-id="lafratii">ℹ</button>
             </li>
 
         </ul>
@@ -627,7 +640,7 @@
                 <button class="info-btn" data-id="tradeai">ℹ</button>
             </li>
             <li style="animation-delay: 0.55s;">
-                <a href="https://adi-trade-1-657910053930.europe-west1.run.app" class="link-card trade-project" target="_blank">
+                <a href="https://adi-trade-1-3rzn6ry36q-ew.a.run.app" class="link-card trade-project" target="_blank">
                     <div class="link-title"><span class="status-dot"></span> 🌟 Gold Anchor VWAP</div>
                     <div class="link-desc">Dashboard operațional exclusiv pentru sistemul pe XAUUSD (15m, 04:00-08:00 AM).</div>
                 </a>
@@ -653,18 +666,25 @@
                 <button class="info-btn" data-id="recrutarebolt">ℹ</button>
             </li>
             <li style="animation-delay: 0.7s;">
-                <a href="https://wolt-cristian-nicula.surge.sh" class="link-card recrutare-project" target="_blank">
+                <a href="https://cristi-wolt-657910053930.europe-west1.run.app" class="link-card recrutare-project" target="_blank">
                     <div class="link-title"><span class="status-dot"></span> 🔵 Wolt Cristian Nicula</div>
                     <div class="link-desc">Pagină personalizată Cristian Nicula (Wolt).</div>
                 </a>
                 <button class="info-btn" data-id="cristian">ℹ</button>
             </li>
             <li style="animation-delay: 0.75s;">
-                <a href="https://ana-ds.surge.sh" class="link-card recrutare-project" target="_blank">
+                <a href="https://ana-ds-bolt-657910053930.europe-west1.run.app" class="link-card recrutare-project" target="_blank">
                     <div class="link-title"><span class="status-dot"></span> 🟢 Bolt Ana DS</div>
                     <div class="link-desc">Pagină personalizată Ana DS (Bolt Food).</div>
                 </a>
                 <button class="info-btn" data-id="ana">ℹ</button>
+            </li>
+            <li style="animation-delay: 0.80s;">
+                <a href="https://alex-bolt-657910053930.europe-west1.run.app" class="link-card recrutare-project" target="_blank">
+                    <div class="link-title"><span class="status-dot"></span> 🟢 Bolt Alex</div>
+                    <div class="link-desc">Pagină personalizată Alex (Bolt Food).</div>
+                </a>
+                <button class="info-btn" data-id="alex">ℹ</button>
             </li>
         </ul>
 
@@ -688,6 +708,10 @@
         const modalBody = document.getElementById('modalBody');
 
         const modalData = {
+            'lafratii': { 
+                title: '🚲 La Frații Bikes', 
+                content: 'Sistem complet de management al închirierilor de biciclete electrice. Gestionare unitară a clienților (PF/PJ), contracte, inventar pe teren, scadențe de plată și revizii mecanice.'
+            },
             'dragons': { 
                 title: '🐉 Dragons Delivery', 
                 content: 'Platforma de prezentare publică a flotei. Gestionează prima interacțiune cu potențialii curieri, oferind acces rapid la informațiile esențiale de onboarding, detalii salariale și pașii de aplicare.'
@@ -697,8 +721,8 @@
                 content: 'Centrul de comandă (CRM) operațional folosit intern de echipa de suport logistic. Administrează date de performanță, emiteri contractuale și gestiunea flotilei fizice (mașini/scutere).'
             },
             'dsapp': { 
-                title: '📱 DS App V2', 
-                content: 'Aplicația de utilitate nativă pentru curieri. Oferă rapoarte de încasări în timp real, notificări push urgente de la dispatcher, și uneltele necesare asistenței pe teren.'
+                title: '☁️ Antigravity Cloud', 
+                content: 'Centrul de comandă unificat Antigravity Cloud. Integrat cu motorul de monitorizare OpenClaw pentru vizibilitate totală asupra flotei, resurselor și sistemelor autonome.'
             },
 
             'tradeai': { 
@@ -724,6 +748,10 @@
             'ana': { 
                 title: '🟢 Bolt Ana DS', 
                 content: 'Landing page customizat pentru partenerul Ana (Bolt Food). Orice aplicant este preluat instant pe canalul direct de WhatsApp asociat, oferind transparență și un flux direct partener-curier.'
+            },
+            'alex': { 
+                title: '🟢 Bolt Alex', 
+                content: 'Pagină dedicată pentru recruiterul intern Alex (Bolt Food). Redirecționare instanțiată pe WhatsApp conform arhitecturii Antigravity.'
             }
         };
 
