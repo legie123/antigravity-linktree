@@ -224,19 +224,16 @@
         .link-card {
             display: flex;
             flex-direction: column;
-            text-decoration: none;
-            color: var(--text-main);
-            background: rgba(20, 20, 30, 0.6);
             align-items: center;
-            padding: 1.25rem 1.5rem;
+            text-decoration: none;
+            color: #ffffff;
             background: rgba(15, 15, 20, 0.55);
             backdrop-filter: blur(24px);
             -webkit-backdrop-filter: blur(24px);
             border-radius: 18px;
             border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 1.25rem 1.5rem;
             margin-bottom: 1.25rem;
-            text-decoration: none;
-            color: white;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             position: relative;
             overflow: hidden;
@@ -244,10 +241,11 @@
         }
 
         .link-card:hover {
-            background: rgba(25, 25, 35, 0.75);
+            background: rgba(35, 35, 50, 0.8);
             transform: translateY(-5px) scale(1.02);
-            border-color: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.3);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 255, 255, 0.05);
+            animation: cardBreathe 3s ease-in-out infinite;
         }
 
         .link-card::before {
@@ -257,10 +255,11 @@
             left: 0;
             width: 4px;
             height: 100%;
-            background: var(--primary);
-            transition: width 0.3s ease;
-            opacity: 0.8;
+            background: linear-gradient(180deg, var(--primary) 0%, var(--accent) 100%);
+            transition: width 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+            opacity: 0.85;
             z-index: 1;
+            box-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
         }
 
         .link-card::after {
@@ -279,12 +278,6 @@
         }
 
         /* BREATHING HOVER EFFECT */
-        .link-card:hover {
-            animation: cardBreathe 3s ease-in-out infinite;
-            background: rgba(35, 35, 50, 0.8);
-            border-color: rgba(255, 255, 255, 0.3);
-        }
-
         @keyframes cardBreathe {
             0% { transform: translateY(-6px) scale(1.02); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 25px rgba(138, 43, 226, 0.25); }
             50% { transform: translateY(-8px) scale(1.03); box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6), 0 0 40px rgba(138, 43, 226, 0.4); }
@@ -308,6 +301,21 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 60%, #c7d2fe 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: filter 0.3s ease;
+        }
+        .link-card:hover .link-title {
+            filter: drop-shadow(0 0 8px rgba(167, 139, 250, 0.4));
+        }
+        .link-card:hover .status-dot {
+            transform: scale(1.25);
+            box-shadow: 0 0 14px var(--accent), 0 0 24px rgba(16, 185, 129, 0.6);
+        }
+        .link-card:hover::before {
+            box-shadow: 0 0 14px rgba(16, 185, 129, 0.6);
         }
 
         .link-desc {
@@ -529,6 +537,8 @@
             .link-desc { font-size: 0.8rem; max-width: 82%; line-height: 1.35; }
             
             .info-btn { width: 32px; height: 32px; right: 1rem; font-size: 0.9rem; }
+            .live-badge { right: 3.5rem; font-size: 0.5rem; padding: 1px 6px; letter-spacing: 1.2px; top: 0.6rem; }
+            .card-no { font-size: 0.55rem; top: 0.5rem; left: 0.85rem; letter-spacing: 1.2px; }
             
             .install-btn { 
                 width: 100%; 
@@ -557,20 +567,118 @@
             header { margin-bottom: 1.5rem; }
         }
 
-        /* Specific colors per project category */
-        .ds-project::before { background: #3b82f6; }
-        .ds-project:hover::before { background: #60a5fa; }
-        
-        .trade-project::before { background: #f59e0b; }
-        .trade-project:hover::before { background: #fbbf24; }
-        
-        .recrutare-project::before { background: #10b981; }
-        .recrutare-project:hover::before { background: #34d399; }
+        /* PREMIUM POLISH BATCH 3 — card numbering, LIVE badge, category border tint */
+        .card-no {
+            position: absolute;
+            top: 0.55rem;
+            left: 1rem;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            color: rgba(255, 255, 255, 0.32);
+            z-index: 3;
+            transition: color 0.3s ease;
+            pointer-events: none;
+        }
+        .link-card:hover .card-no { color: rgba(255, 255, 255, 0.65); }
+
+        .live-badge {
+            position: absolute;
+            top: 0.7rem;
+            right: 4rem;
+            background: rgba(16, 185, 129, 0.12);
+            border: 1px solid rgba(16, 185, 129, 0.45);
+            color: #34d399;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.58rem;
+            font-weight: 700;
+            letter-spacing: 1.8px;
+            padding: 2px 8px;
+            border-radius: 8px;
+            z-index: 3;
+            text-shadow: 0 0 8px rgba(16, 185, 129, 0.5);
+            pointer-events: none;
+            transition: all 0.3s ease;
+        }
+        .link-card:hover .live-badge {
+            background: rgba(16, 185, 129, 0.22);
+            border-color: rgba(16, 185, 129, 0.7);
+            box-shadow: 0 0 14px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Category border tint (subtle base — coerenta cu stripe-ul) */
+        .ds-project { border-color: rgba(59, 130, 246, 0.18); }
+        .trade-project { border-color: rgba(245, 158, 11, 0.18); }
+        .recrutare-project { border-color: rgba(16, 185, 129, 0.18); }
+        .core-project { border-color: rgba(180, 107, 255, 0.32); background: linear-gradient(135deg, rgba(180,107,255,0.05), rgba(0,240,255,0.04)); }
+        .core-project::before { background: linear-gradient(180deg, #00f0ff 0%, #b46bff 50%, #ff5fb1 100%); box-shadow: 0 0 12px rgba(180, 107, 255, 0.55); }
+        .core-project:hover::before { background: linear-gradient(180deg, #b46bff 0%, #ff5fb1 100%); box-shadow: 0 0 20px rgba(180, 107, 255, 0.85); }
+        .core-project .link-title { background: linear-gradient(135deg, #ffffff 0%, #00f0ff 50%, #b46bff 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+        .productivitate-project { border-color: rgba(139, 139, 255, 0.18); }
+        .productivitate-project::before { background: linear-gradient(180deg, #8b8bff 0%, #b46bff 100%); box-shadow: 0 0 8px rgba(139, 139, 255, 0.4); }
+
+        /* Dragon's Wisdom — personal OS (gold + ember + neon flame chromatic) */
+        .wisdom-project {
+            border-color: rgba(245, 184, 0, 0.32);
+            background: linear-gradient(135deg, rgba(255, 122, 24, 0.07) 0%, rgba(157, 77, 255, 0.05) 100%);
+        }
+        .wisdom-project::before {
+            background: linear-gradient(180deg, #f5b800 0%, #ff7a18 35%, #ff4d2e 65%, #9d4dff 100%);
+            box-shadow: 0 0 14px rgba(255, 122, 24, 0.6);
+        }
+        .wisdom-project:hover {
+            background: linear-gradient(135deg, rgba(255, 122, 24, 0.12) 0%, rgba(157, 77, 255, 0.09) 100%);
+            box-shadow: 0 0 26px rgba(245, 184, 0, 0.22), 0 0 60px rgba(157, 77, 255, 0.14);
+        }
+        .wisdom-project:hover::before {
+            background: linear-gradient(180deg, #fbbf24 0%, #ff7a18 50%, #9d4dff 100%);
+            box-shadow: 0 0 24px rgba(157, 77, 255, 0.85);
+        }
+        .wisdom-project .link-title {
+            background: linear-gradient(135deg, #ffffff 0%, #f5b800 40%, #ff4d2e 70%, #9d4dff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .local-badge {
+            position: absolute;
+            top: 12px;
+            right: 70px;
+            font-size: 0.58rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            padding: 2px 8px;
+            border-radius: 6px;
+            background: linear-gradient(135deg, #9d4dff 0%, #ff4d2e 100%);
+            color: #fff;
+            box-shadow: 0 0 10px rgba(157, 77, 255, 0.55);
+        }
+        .sub-section-title {
+            font-size: 0.72rem;
+            text-transform: uppercase;
+            letter-spacing: 2.6px;
+            color: rgba(255, 255, 255, 0.42);
+            margin: 0.4rem 0 0.65rem 0.25rem;
+            font-weight: 500;
+            padding-left: 0.35rem;
+            border-left: 2px solid rgba(245, 184, 0, 0.4);
+        }
+
+        /* Specific colors per project category — gradient stripe per category */
+        .ds-project::before { background: linear-gradient(180deg, #3b82f6 0%, #60a5fa 50%, #93c5fd 100%); box-shadow: 0 0 8px rgba(59, 130, 246, 0.4); }
+        .ds-project:hover::before { background: linear-gradient(180deg, #60a5fa 0%, #93c5fd 100%); box-shadow: 0 0 16px rgba(96, 165, 250, 0.7); }
+
+        .trade-project::before { background: linear-gradient(180deg, #f59e0b 0%, #fbbf24 50%, #fde68a 100%); box-shadow: 0 0 8px rgba(245, 158, 11, 0.4); }
+        .trade-project:hover::before { background: linear-gradient(180deg, #fbbf24 0%, #fde68a 100%); box-shadow: 0 0 16px rgba(251, 191, 36, 0.7); }
+
+        .recrutare-project::before { background: linear-gradient(180deg, #10b981 0%, #34d399 50%, #6ee7b7 100%); box-shadow: 0 0 8px rgba(16, 185, 129, 0.4); }
+        .recrutare-project:hover::before { background: linear-gradient(180deg, #34d399 0%, #6ee7b7 100%); box-shadow: 0 0 16px rgba(52, 211, 153, 0.7); }
     </style>
 </head>
 <body>
     <div class="dragon-bg-layer">
-        <video autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
+        <video autoplay loop muted playsinline preload="metadata" style="width: 100%; height: 100%; object-fit: cover; pointer-events: none;">
             <source src="video-dragon.mp4" type="video/mp4">
         </video>
     </div>
@@ -595,52 +703,87 @@
             </button>
         </header>
 
-        <h2 class="section-title" style="animation-delay: 0.2s;">📦 Flote, Logistică & Curierat</h2>
+        <h2 class="section-title" style="animation-delay: 0.18s;">🧠 Antigravity Core · Personal OS &amp; Command</h2>
+        <ul>
+            <li style="animation-delay: 0.22s;">
+                <a href="http://localhost:3847/dashboard" class="link-card wisdom-project" target="_blank">
+                    <span class="card-no">01</span>
+                    <span class="live-badge">LIVE</span>
+                    <span class="local-badge">LOCAL</span>
+                    <div class="link-title"><span class="status-dot"></span> 🐉 Dragon's Wisdom Command Center</div>
+                    <div class="link-desc">Forja personală de performanță — Flow Engine, P.A.R.A., Deep Work, Vision, Toolkit, Sales Coach. Rulează local (port 3847).</div>
+                </a>
+                <button class="info-btn" data-id="wisdom">ℹ</button>
+            </li>
+            <li style="animation-delay: 0.26s;">
+                <a href="http://127.0.0.1:4747" class="link-card core-project" target="_blank">
+                    <span class="card-no">02</span>
+                    <span class="live-badge">LIVE</span>
+                    <span class="local-badge">LOCAL</span>
+                    <div class="link-title"><span class="status-dot"></span> 🌌 Whispers · LLM-IDE Central Panel</div>
+                    <div class="link-desc">Mission Control OS pentru Claude, Hermes, Ruflo &amp; matricea IDE — control direct în terminal/IDE, audit master, telemetrie live (CPU/procese/porturi), memorie Obsidian + OMI. Local-first, 127.0.0.1:4747.</div>
+                </a>
+                <button class="info-btn" data-id="whispers">ℹ</button>
+            </li>
+        </ul>
+
+        <h2 class="section-title" style="animation-delay: 0.3s;">📦 Flote, Logistică & Curierat</h2>
         <ul>
             <!-- DS Core -->
-            <li style="animation-delay: 0.25s;">
+            <li style="animation-delay: 0.34s;">
                 <a href="https://dragons-delivery-3rzn6ry36q-ew.a.run.app" class="link-card ds-project" target="_blank">
+                    <span class="card-no">02</span>
+                    <span class="live-badge">LIVE</span>
                     <div class="link-title"><span class="status-dot"></span> 🐉 Dragons Delivery</div>
                     <div class="link-desc">Portal operațional tactic și site de onboarding pentru curieri.</div>
                 </a>
                 <button class="info-btn" data-id="dragons">ℹ</button>
             </li>
-            <li style="animation-delay: 0.3s;">
+            <li style="animation-delay: 0.38s;">
                 <a href="https://ds-courier-portal-3rzn6ry36q-ew.a.run.app" class="link-card ds-project" target="_blank">
+                    <span class="card-no">03</span>
+                    <span class="live-badge">LIVE</span>
                     <div class="link-title"><span class="status-dot"></span> 📋 DS Courier Portal</div>
                     <div class="link-desc">Portalul operațional de logistică internă și management resurse.</div>
                 </a>
                 <button class="info-btn" data-id="dsportal">ℹ</button>
             </li>
-            <li style="animation-delay: 0.35s;">
+            <li style="animation-delay: 0.42s;">
                 <a href="https://ds-app-v2-3rzn6ry36q-ew.a.run.app" class="link-card ds-project" style="border: 1px solid rgba(168, 85, 247, 0.4); background: rgba(168, 85, 247, 0.05);" target="_blank">
+                    <span class="card-no">04</span>
+                    <span class="live-badge">LIVE</span>
                     <div class="link-title"><span class="status-dot"></span> ☁️ Antigravity Cloud</div>
                     <div class="link-desc">Portalul central de monitorizare și administrare a ecosistemului Antigravity.</div>
                 </a>
                 <button class="info-btn" data-id="dsapp">ℹ</button>
             </li>
-            <li style="animation-delay: 0.38s;">
+            <li style="animation-delay: 0.46s;">
                 <a href="https://la-fratii-bikes-657910053930.europe-west1.run.app" class="link-card ds-project" target="_blank">
+                    <span class="card-no">05</span>
+                    <span class="live-badge">LIVE</span>
                     <div class="link-title"><span class="status-dot"></span> 🚲 La Frații Bikes</div>
                     <div class="link-desc">Sistemul intern de management pentru flotă și închirieri biciclete E-Bike.</div>
                 </a>
                 <button class="info-btn" data-id="lafratii">ℹ</button>
             </li>
-
         </ul>
 
-        <h2 class="section-title" style="animation-delay: 0.45s;">🤖 Sisteme Autonome & Trading</h2>
+        <h2 class="section-title" style="animation-delay: 0.52s;">🤖 Sisteme Autonome & Trading</h2>
         <ul>
             <!-- Trading -->
-            <li style="animation-delay: 0.5s;">
+            <li style="animation-delay: 0.56s;">
                 <a href="https://trade-ai-3rzn6ry36q-ew.a.run.app" class="link-card trade-project" target="_blank">
+                    <span class="card-no">06</span>
+                    <span class="live-badge">LIVE</span>
                     <div class="link-title"><span class="status-dot"></span> 📈 Trade AI (Crypto Radar)</div>
                     <div class="link-desc">Motor autonom de tranzacționare high-frequency și backtesting.</div>
                 </a>
                 <button class="info-btn" data-id="tradeai">ℹ</button>
             </li>
-            <li style="animation-delay: 0.55s;">
+            <li style="animation-delay: 0.6s;">
                 <a href="https://adi-trade-1-3rzn6ry36q-ew.a.run.app" class="link-card trade-project" target="_blank">
+                    <span class="card-no">07</span>
+                    <span class="live-badge">LIVE</span>
                     <div class="link-title"><span class="status-dot"></span> 🌟 Gold Anchor VWAP</div>
                     <div class="link-desc">Dashboard operațional exclusiv pentru sistemul pe XAUUSD (15m, 04:00-08:00 AM).</div>
                 </a>
@@ -648,41 +791,56 @@
             </li>
         </ul>
 
-        <h2 class="section-title" style="animation-delay: 0.55s;">🎯 Recrutare & Campanii</h2>
+        <h2 class="section-title" style="animation-delay: 0.66s;">🎯 Recrutare & Campanii</h2>
+
+        <div class="sub-section-title" style="animation-delay: 0.68s;">Campanii Generale (Public Landing)</div>
         <ul>
-            <!-- Recrutare Externa -->
-            <li style="animation-delay: 0.6s;">
+            <li style="animation-delay: 0.7s;">
                 <a href="https://wolt-recrutare-curieri.netlify.app" class="link-card recrutare-project" target="_blank">
+                    <span class="card-no">08</span>
+                    <span class="live-badge">LIVE</span>
                     <div class="link-title"><span class="status-dot"></span> 🍔 Wolt Recrutare</div>
                     <div class="link-desc">Landing page pentru campaniile de atragere curieri Wolt.</div>
                 </a>
                 <button class="info-btn" data-id="recrutarewolt">ℹ</button>
             </li>
-            <li style="animation-delay: 0.65s;">
+            <li style="animation-delay: 0.74s;">
                 <a href="https://bolt-recrutare-curieri.netlify.app" class="link-card recrutare-project" target="_blank">
+                    <span class="card-no">09</span>
+                    <span class="live-badge">LIVE</span>
                     <div class="link-title"><span class="status-dot"></span> ⚡️ Bolt Food Recrutare</div>
                     <div class="link-desc">Landing page pentru atragerea de curieri pe platforma Bolt.</div>
                 </a>
                 <button class="info-btn" data-id="recrutarebolt">ℹ</button>
             </li>
-            <li style="animation-delay: 0.7s;">
+        </ul>
+
+        <div class="sub-section-title" style="animation-delay: 0.78s;">Pagini Partener (WhatsApp Direct Routing)</div>
+        <ul>
+            <li style="animation-delay: 0.8s;">
                 <a href="https://cristi-wolt-657910053930.europe-west1.run.app" class="link-card recrutare-project" target="_blank">
-                    <div class="link-title"><span class="status-dot"></span> 🔵 Wolt Cristian Nicula</div>
-                    <div class="link-desc">Pagină personalizată Cristian Nicula (Wolt).</div>
+                    <span class="card-no">10</span>
+                    <span class="live-badge">LIVE</span>
+                    <div class="link-title"><span class="status-dot"></span> 🔵 Wolt — Cristian Nicula</div>
+                    <div class="link-desc">Pagină personalizată Cristian Nicula (Wolt). Trafic routat direct pe WhatsApp partener.</div>
                 </a>
                 <button class="info-btn" data-id="cristian">ℹ</button>
             </li>
-            <li style="animation-delay: 0.75s;">
+            <li style="animation-delay: 0.84s;">
                 <a href="https://ana-ds-bolt-657910053930.europe-west1.run.app" class="link-card recrutare-project" target="_blank">
-                    <div class="link-title"><span class="status-dot"></span> 🟢 Bolt Ana DS</div>
-                    <div class="link-desc">Pagină personalizată Ana DS (Bolt Food).</div>
+                    <span class="card-no">11</span>
+                    <span class="live-badge">LIVE</span>
+                    <div class="link-title"><span class="status-dot"></span> 🟢 Bolt — Ana DS</div>
+                    <div class="link-desc">Pagină personalizată Ana DS (Bolt Food). Trafic routat direct pe WhatsApp partener.</div>
                 </a>
                 <button class="info-btn" data-id="ana">ℹ</button>
             </li>
-            <li style="animation-delay: 0.80s;">
+            <li style="animation-delay: 0.88s;">
                 <a href="https://alex-bolt-657910053930.europe-west1.run.app" class="link-card recrutare-project" target="_blank">
-                    <div class="link-title"><span class="status-dot"></span> 🟢 Bolt Alex</div>
-                    <div class="link-desc">Pagină personalizată Alex (Bolt Food).</div>
+                    <span class="card-no">12</span>
+                    <span class="live-badge">LIVE</span>
+                    <div class="link-title"><span class="status-dot"></span> 🟢 Bolt — Alex</div>
+                    <div class="link-desc">Pagină personalizată Alex (Bolt Food). Trafic routat direct pe WhatsApp partener.</div>
                 </a>
                 <button class="info-btn" data-id="alex">ℹ</button>
             </li>
@@ -708,8 +866,12 @@
         const modalBody = document.getElementById('modalBody');
 
         const modalData = {
-            'lafratii': { 
-                title: '🚲 La Frații Bikes', 
+            'wisdom': {
+                title: '🐉 Dragon\'s Wisdom Command Center',
+                content: 'Forja personală de performanță. Modul Flow Engine (Venn 4 forțe + scoring), P.A.R.A. organizer cu auto-clasificare, Deep Work planner cu Parkinson, Vision system (anti-vision · vision · 6-Month Mode), Toolkit (Pomodoro · 3/3/3 · Eisenhower · Frog · Seinfeld), Sales Coach (rewrite engine cu 8 reguli), Connectors gated (Obsidian · GitHub · GCal). Local-first prin localStorage. Rulează pe http://localhost:3847 — pornește prin butonul Dragon\'s Wisdom.app de pe Desktop. ⌘K pentru Command Palette.'
+            },
+            'lafratii': {
+                title: '🚲 La Frații Bikes',
                 content: 'Sistem complet de management al închirierilor de biciclete electrice. Gestionare unitară a clienților (PF/PJ), contracte, inventar pe teren, scadențe de plată și revizii mecanice.'
             },
             'dragons': { 
